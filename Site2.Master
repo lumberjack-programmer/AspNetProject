@@ -1,0 +1,592 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="Project.Site2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Eat(); Sleap(); Code(); Repeat();</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+     <link href="~/StyleSheet1.css" rel="stylesheet" media="screen" runat="server"/> 
+     <link href="~/PurchuseStyle.css" rel="stylesheet" media="screen" runat="server"/> 
+    
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+       if (sessionStorage.getItem('pass_access') == null)
+         {
+            window.location.href = "http://localhost:62444/Home.aspx";
+    
+          }
+
+
+            $('#purchusing').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json;charset=utf-8",
+                    url: 'Check.aspx/InsertMethod',
+                    data: "{'cardname':'" + $("#fname").val() + "', 'phonenumber': '" + $("#fnumber").val() + "', 'month': '" + $("#fmonth").val()  + "', 'cvv': '" + $("#fcvv").val() + "', 'exp': '" +  $("#fexp").val() + "', 'email': '" + $("#femail").val() + "'}",
+                    async: false,
+                    success: function (response) {
+                        
+                        $('#fname').val('');
+                        $('#fnumber').val('');
+                        $('#fmonth').val('');
+                        $('#fcvv').val('');
+                        $('#fexp').val('');
+                        $('#femail').val('');
+
+                        if (response.d == true) {
+
+                            alert("Congratulate! You've just obtain the courses!");
+                            document.getElementById('id01').style.display = 'none';
+                             $("#hide-courses").show();
+                            $('#content-hide-show').hide();
+                            $("#status").show();
+
+                            sessionStorage.setItem('pass_access', "true");
+                            $('#content-title').text("About Us");
+                            $('#content-about-hide-show').show();
+                        } else {
+                            alert("This email already exists!");
+                        }
+                        
+                      
+                        
+
+
+                  
+                        },
+                    error: function () {
+                    console.log(JSON.stringify(error));
+                    }
+
+                 });
+
+            });
+
+        });
+
+
+
+
+         $(document).ready(function () {
+                 var hiddenBox = sessionStorage.getItem('pass_access');
+                 if (hiddenBox == "true") {
+                     $("#hide-courses").show();
+                     //$('#content-title').text("About Us");
+                      //$('#content-about-hide-show').show();
+                 //Hide something
+                     $('#content-hide-show').hide();
+                     $("#status").show();
+
+                    
+                     
+                }
+
+
+                $('#femail').val(sessionStorage.getItem('email_pass'));
+
+            });
+    </script>
+
+
+
+ 
+
+   
+   <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <style type="text/css">
+       
+        #day{
+        color:white;
+        font-family:Consolas;
+        font-size: 12px;
+        text-align:left;
+        margin-left:100px;
+      }
+    </style>
+    
+   
+
+
+</head>
+<body>
+    <form id="form1" runat="server"></form>
+  
+    
+    <div class="header">
+         <div class="header2">
+           
+             <div class="login"> <img src="images/Untitled-1.jpg" />
+            </div>
+             <div class="login">
+        <div class="auto-style3">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">
+                        &nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                    
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10"><p style="font-size:15px;">You are welcome!</p> <p style="font-size:20px;" id="passname"><b></b></p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        <p id="status" style="display:none; font-size:15px;" >Status: Premium</p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15"></td>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18">
+                       
+                        <%-- <asp:Button ID="LogOut" runat="server" CssClass="button-login1" OnClick="LogOut_Click" Text="Sign Out" />--%>
+                                   <div class="log-reg">
+                <%-- New Logging Form--%>
+                 
+                    
+                     <%--<i class="fa fa-envelope"></i>                   
+                         <i class="fa fa-key icon"></i>--%>
+                  <%--  <button type="button" onclick="log()"  class="button-login2" id="loging_button1">Sign Up</button><span></span><span></span><span></span><span></span>--%>
+               <span></span><span></span><span></span>   <a id="log_out" onclick="log_out" style="color:white">Log Out</a>
+                          <span></span><span></span><span></span><span></span>
+                       
+                    
+
+                
+                </div>
+                        
+                        
+                       <%-- <button type="button" id="log_out" class="button-login1" onclick="log_out">Log out</button>--%>
+                            </td>
+                    <td class="auto-style19"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            </div>
+        
+              </div>
+             </div>
+
+    
+
+        <div style="height:20px;">
+         <p id="day"></p>
+        <p id="time"></p>
+        </div>
+         <br />
+
+        <script>
+            $(document).ready(function () {
+
+
+
+
+                 var hiddenBox = sessionStorage.getItem('pass_access');
+                 if (hiddenBox == "true") {
+                     $("#hide-courses").show();
+                     $('#content-title').text("About Us");
+                      $('#content-about-hide-show').show();
+                //Hide something
+                     $('#content-hide-show').hide();
+                     $("#status").show();
+
+                    
+                     
+                }
+                var admin = sessionStorage.getItem('pass_admin');
+                if (admin == "true") {
+                    $('#hide-user').show();
+                }
+
+                $('#femail').val(sessionStorage.getItem('email_pass'));
+
+            });
+
+          
+            document.getElementById("passname").innerHTML = sessionStorage.getItem("pass_name");
+
+            
+
+
+            //document.getElementById('passemail').innerHTML = sessionStorage.getItem("pass_access");
+
+
+          
+
+            document.getElementById("log_out").addEventListener('click', log_out);
+            //Here Warning!!!!!
+             function log_out() {
+                 document.getElementById("passname").innerHTML = '';
+                 sessionStorage.setItem("pass_access", "false");
+                
+                window.location.href = "http://localhost:62444/Home.aspx";
+            }
+           
+              var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+
+                  var myVar=setInterval(function(){myTimer()},1000);
+     function myTimer()
+     {
+        var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+      }
+    function myStopFunction()
+     {
+    clearInterval(myVar);
+      }
+                // document.getElementById("time").innerHTML =  hours + " : " + minutes + " : " + seconds;
+         
+        </script>
+     
+  
+    
+
+     
+
+
+        <div id="navbar">
+              <ul>
+ <li> <a class="active" href="UserHome.aspx">Home</a></li>
+                 
+   <li> <div id="hide-user" style="display:none";>
+       <a href="UsersAdmin.aspx">Users</a></div> </li>
+                  
+  <li> <a href="Contacts.aspx">Contact</a> </li>
+                  
+            <li class="dropdown">
+                <%--Hide Courses--%>
+                <div id="hide-courses" style="display:none";>
+<a href="javascript:void(0)" id="courses" class="dropbtn">Courses</a>
+    <div class="dropdown-content">
+         <a href="JavaScriptIntoduction.aspx">JavaScript</a>
+      <a href="jQuery Introduction.aspx">jQuery</a>
+      <a href="PHP Introduction.aspx">Php</a>
+      <a href="SQL Introduction.aspx">SQL</a>
+     </div>
+      
+    </div>
+        </li>
+ </ul>
+           
+       </div> 
+         <%-- Body--%>
+    <div class="content-main">
+        <br />
+        
+  <h3 id="content-title">Our Offers</h3>
+        <br />
+
+
+  
+      <br />
+    
+
+        <%--The Beginning of the from--%>
+
+
+       
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1 style="color:black">PAYMENT</h1>
+      <p style="color:black">Please fill in this form to purchuse a premium account.</p>
+      <hr>
+
+         <label style="color:black" for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+      
+        
+
+      <label style="color:black; float:left" for="name"><b>Name on Card</b></label>
+      <input style="color:black" id="fname" type="text" placeholder="John Viliams" name="name" required>
+
+       <label style="color:black; float:left" for="credit_card"><b>Credit card number</b></label>
+      <input style="color:black" pattern="[0-9]{12}" title="Twelve numbers only" id="fnumber" type="text" placeholder="111-222-333-444" name="number" required>  
+
+      <label style="color:black; float:left" for="exp_month"><b>Exp Month</b></label>
+      <input style="color:black" id="fmonth" type="text" placeholder="September" name="exp_month" required>
+       
+       
+
+        <label style="color:black; float:left" for="cvv"><b>CVV</b></label>
+      <input style="color:black" pattern="[0-9]{3}" title="Three numbers only" id="fcvv" type="text" placeholder="346" name="cvv" required>
+
+        <label style="color:black; float:left" for="exp_year"><b>Exp Year</b></label>
+      <input style="color:black" id="fexp" pattern="[0-9]{4}" title="Four numbers only" type="text" placeholder="2022" name="exp_year" required>
+
+   
+        
+        
+       <label style="color:black; float:left" for="email"><b>Email</b></label>
+      <input style="color:black" id="femail" type="email"  name="email" disabled>
+        
+
+
+      
+      
+
+     <p style="color:black">By paying off an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    
+       
+      
+
+
+
+
+
+    </div>
+       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <input type="submit" id="purchusing" class="signupbtn" value="Submit"/>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+    //sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+// When the user clicks anywhere outside of the modal, close it
+//window.onclick = function(event) {
+//  if (event.target == modal) {
+//    modal.style.display = "none";
+//    }
+//    }
+
+    //sdsdsdsdsddssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+    //$('#fnumber').change(function ()
+    //        {   
+    //            var checkvalue = $('#fnumber').val();
+    //            if (checkvalue != parseInt(checkvalue))
+    //                $('#fnumber').val("");
+    //});
+    //  $('#fcvv').change(function ()
+    //        {   
+    //            var checkvalue = $('#fcvv').val();
+    //            if (checkvalue != parseInt(checkvalue))
+    //                $('#fcvv').val("");
+    //});
+    //  $('#fexp').change(function ()
+    //        {   
+    //            var checkvalue = $('#fexp').val();
+    //            if (checkvalue != parseInt(checkvalue))
+    //                $('#fexp').val("");
+    //});
+
+
+    // To enter Monthes correctly
+
+    //document.getElementById('buy').addEventListener('click', check);
+    //function check() {
+    //    var current_month = document.getElementById('fmonth').value;
+    //    var month = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    //    var checkbox = 0;
+
+    //    for (var i = 0; i < month.length - 1; i++) {
+    //        if (month[i] == current_month) {
+    //            checkbox = 1;
+
+    //    } 
+         
+    //    }
+    //    if (check != true) {
+    //        alert('Your month is not correct, try again!');
+    //    }
+
+    //    }
+    
+    
+
+</script>
+
+
+
+
+
+        <%--The end of the form--%>
+
+
+
+
+
+        <%--Hiding and showing of offer--%>
+        <div id="content-hide-show">
+ <p class="dotted">
+  
+      
+ - Hi! We're glad to see you here. Now, please hurry up and buy our language courses, because we have some good news for you. We would like to offer you a 50% discount until next month.
+      All these courses will give you fundamental understanding in programming languages. Just sign in to access to all the courses. 
+        
+      
+  
+      </p>
+        <div class="buy-course">
+
+
+            <table class="auto-style20">
+                <tr>
+                    <td class="auto-style24"></td>
+                    <td class="auto-style25"></td>
+                    <td class="auto-style26">
+                         <button class="purchuse-button" onclick="document.getElementById('id01').style.display='block'" ">PURCHUSE COURSE</button>
+                      <%--<button class="auto-style28" name="Purchuse" value="PURCHUSE COURSE" onclick="document.getElementById('id01').style.display='block'" id="purchuse" />--%>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style22">&nbsp;</td>
+                    <td class="auto-style21">
+                        
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style22">&nbsp;</td>
+                    <td class="auto-style21">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+
+        </div>
+
+     
+           <br />
+</div>
+
+
+
+
+
+
+ <div id="content-about-hide-show" style="display:none" >
+  <p class="dotted">
+  
+      <%--<b style="color:goldenrod">Anyone can become a programmer! It’s all down to the right approach to learning. And we’ve found it.--%> <br />
+
+<b style="text-align:left; color:goldenrod">About the project </b><br /><br />
+Hey! We’re excited to see you on here. It is an online course for learning different programming from scratch. You’re probably curious about who we are and what we can do for you. Well, let's get down to business. 
+The concept of the project appeared in 2020. At that time there were already lots of coding bootcamps and private tutors but not many of them were capable of making students confident in coding. Meanwhile, we’ve always known that the most important thing in learning programming is practice. 
+One day we wondered: what if we create a course that would help people learn programming languages in the same manner the tutor does but in a convenient online mode? So that anyone could easily devote to learning as much time as he needs and adjust a self-paced training path. 
+And that’s how our forerunner project appeared. In a few years, it has grown up to a large our community for users from Eastern Europe, CIS, and many other countries.
+ In 2020 we thought that it’s time to go global with our interactive and practical courses and launched in English. 
+<br /><br /><b style="text-align:left; color:goldenrod">Our goal is your employment </b><br /><br />
+To develop your programming skills and the ability to think in the "right" way, you'll need 500-1000 hours of practice. The courses was created specifically to give you this experience. <br /><br />
+Our learning course is a tool for you to reach a major goal and become a developer. It will help you overcome the key challenges: <br /><br />
+1.	Master programming fundamentals and become confident in programming even if you’re totally new to coding. <br /><br />
+2.	 Stay motivated till the end of your training despite that it’s sometimes hard to learn on a regular basis and not to stop halfway. <br /><br />
+3.	 Learn to code in a fancy way, if you’re convinced that thick books and endless video tutorials won’t help you become a programmer. <br /><br />
+<b style="text-align:left; color:goldenrod">It is not only the learning platform but the global community</b><br /><br />
+ Today it is boosting rapidly. There are more than 300 thousands of users from 187 countries all over the world. <br /><br />
+You will find like-minded fellows here: <br /><br />
+- Forum for any discussions about learning experience or programming career <br /><br />
+- Chat for communicating with other users <br /><br />
+- Groups for reading and posting articles about programming, job search, and personal experience <br /><br />
+
+
+      &nbsp;</p>
+      
+</div>
+
+
+
+
+
+
+
+
+
+     </div>
+   
+       
+        
+    
+    <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>        
+            
+        <br />
+
+      
+        
+        
+        <!--  <img src="images/programming-code-simple-background-coding-wallpaper-preview.jpg" />-->
+        
+      
+          
+           <footer>
+            <div class="bottom">
+        <p>Copyright 2021</p>
+                </div>
+
+    </footer>
+    
+
+        </div>
+   <%--  </form>--%>
+     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+       
+    
+          
+    
+    
+</body>
+    
+</html>

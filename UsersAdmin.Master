@@ -1,0 +1,498 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UsersAdmin.Master.cs" Inherits="Project.Admin1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Users</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+     <link href="~/StyleSheet1.css" rel="stylesheet" media="screen" runat="server"/> 
+     <link href="~/PurchuseStyle.css" rel="stylesheet" media="screen" runat="server"/> 
+    
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            if (sessionStorage.getItem('pass_access') == null)
+         {
+            window.location.href = "http://localhost:62444/Home.aspx";
+    
+          }
+
+
+
+            $('#purchusing').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json;charset=utf-8",
+                    url: 'Check.aspx/InsertMethod',
+                    data: "{'cardname':'" + $("#fname").val() + "', 'phonenumber': '" + $("#fnumber").val() + "', 'month': '" + $("#fmonth").val()  + "', 'cvv': '" + $("#fcvv").val() + "', 'exp': '" +  $("#fexp").val() + "', 'email': '" + $("#femail").val() + "'}",
+                    async: false,
+                    success: function (response) {
+                        
+                        $('#fname').val('');
+                        $('#fnumber').val('');
+                        $('#fmonth').val('');
+                        $('#fcvv').val('');
+                        $('#fexp').val('');
+                        $('#femail').val('');
+
+                        if (response.d == true) {
+
+                            alert("Congratulate! You've just obtain the courses!");
+                            document.getElementById('id01').style.display = 'none';
+                             $("#hide-courses").show();
+                            $('#content-hide-show').hide();
+                            $("#status").show();
+
+                            sessionStorage.setItem('pass_access', "true");
+                            $('#content-title').text("About Us");
+                            $('#content-about-hide-show').show();
+                        } else {
+                            alert("This email already exists!");
+                        }
+                        
+                      
+                        
+
+
+                  
+                        },
+                    error: function () {
+                    console.log(JSON.stringify(error));
+                    }
+
+                 });
+
+            });
+
+        });
+
+
+
+
+         $(document).ready(function () {
+                 var hiddenBox = sessionStorage.getItem('pass_access');
+                 if (hiddenBox == "true") {
+                     $("#hide-courses").show();
+                     //$('#content-title').text("About Us");
+                      //$('#content-about-hide-show').show();
+                 //Hide something
+                     $('#content-hide-show').hide();
+                     $("#status").show();
+
+                    
+                     
+                }
+
+
+                $('#femail').val(sessionStorage.getItem('email_pass'));
+
+            });
+    </script>
+
+
+
+ 
+
+   
+   <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+    <style type="text/css">
+       
+        #day{
+        color:white;
+        font-family:Consolas;
+        font-size: 12px;
+        text-align:left;
+        margin-left:100px;
+      }
+    </style>
+    
+   
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="header">
+         <div class="header2">
+           
+             <div class="login"> <img src="images/Untitled-1.jpg" />
+            </div>
+             <div class="login">
+        <div class="auto-style3">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">
+                        &nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                    
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10"><p style="font-size:15px;">You are welcome!</p> <p style="font-size:20px;" id="passname"><b></b></p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        <p id="status" style="display:none; font-size:15px;" >Status: Premium</p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15"></td>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18">
+                       
+                        <%-- <asp:Button ID="LogOut" runat="server" CssClass="button-login1" OnClick="LogOut_Click" Text="Sign Out" />--%>
+                                   <div class="log-reg">
+                <%-- New Logging Form--%>
+                 
+                    
+                     <%--<i class="fa fa-envelope"></i>                   
+                         <i class="fa fa-key icon"></i>--%>
+                  <%--  <button type="button" onclick="log()"  class="button-login2" id="loging_button1">Sign Up</button><span></span><span></span><span></span><span></span>--%>
+               <span></span><span></span><span></span>   <a id="log_out" onclick="log_out" style="color:white">Log Out</a>
+                          <span></span><span></span><span></span><span></span>
+                       
+                    
+
+                
+                </div>
+                        
+                        
+                       <%-- <button type="button" id="log_out" class="button-login1" onclick="log_out">Log out</button>--%>
+                            </td>
+                    <td class="auto-style19"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            </div>
+        
+              </div>
+             </div>
+
+    
+
+        <div style="height:20px;">
+         <p id="day"></p>
+        <p id="time"></p>
+        </div>
+         <br />
+
+        <script>
+            $(document).ready(function () {
+                 var hiddenBox = sessionStorage.getItem('pass_access');
+                 if (hiddenBox == "true") {
+                     $("#hide-courses").show();
+                     //$('#content-title').text("About Us");
+                      $('#content-about-hide-show').show();
+                //Hide something
+                     $('#content-hide-show').hide();
+                     $("#status").show();
+
+                    
+                     
+                }
+                var admin = sessionStorage.getItem('pass_admin');
+                if (admin == "true") {
+                    $('#hide-user').show();
+                }
+
+                $('#femail').val(sessionStorage.getItem('email_pass'));
+
+            });
+
+          
+            document.getElementById("passname").innerHTML = sessionStorage.getItem("pass_name");
+
+            
+
+
+            //document.getElementById('passemail').innerHTML = sessionStorage.getItem("pass_access");
+
+
+          
+
+            document.getElementById("log_out").addEventListener('click', log_out);
+            //Here Warning!!!!!
+             function log_out() {
+                 document.getElementById("passname").innerHTML = '';
+                 sessionStorage.setItem("pass_access", "false");
+                
+                window.location.href = "http://localhost:62444/Home.aspx";
+            }
+           
+              var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+
+                  var myVar=setInterval(function(){myTimer()},1000);
+     function myTimer()
+     {
+        var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+      }
+    function myStopFunction()
+     {
+    clearInterval(myVar);
+      }
+                // document.getElementById("time").innerHTML =  hours + " : " + minutes + " : " + seconds;
+         
+        </script>
+     
+  
+    
+
+     
+
+
+        <div id="navbar">
+              <ul>
+ <li> <a class="active" href="UserHome.aspx">Home</a></li>
+                 
+   <li> <div id="hide-user" style="display:none";>
+       <a href="UsersAdmin.aspx">Users</a></div> </li>
+                  
+  <li> <a href="Contacts.aspx">Contact</a> </li>
+                  
+            <li class="dropdown">
+                <%--Hide Courses--%>
+                <div id="hide-courses" style="display:none";>
+<a href="javascript:void(0)" id="courses" class="dropbtn">Courses</a>
+    <div class="dropdown-content">
+         <a href="JavaScriptIntoduction.aspx">JavaScript</a>
+      <a href="jQuery Introduction.aspx">jQuery</a>
+      <a href="PHP Introduction.aspx">Php</a>
+      <a href="SQL Introduction.aspx">SQL</a>
+     </div>
+      
+    </div>
+        </li>
+ </ul>
+           
+       </div> 
+         <%-- Body--%>
+    <div class="content-main">
+        <br />
+        
+  <h3 id="content-title">Database Users</h3>
+        <br />
+
+
+  <h4 style="text-align:left; background-color:blue">All Users</h4>
+      
+    
+
+        <%--The Beginning of the from--%>
+
+
+       
+
+
+
+
+
+
+
+
+
+        <%--The end of the form--%>
+
+
+
+
+
+        <%--Hiding and showing of offer--%>
+      
+
+
+
+
+  
+  
+      <%--<b style="color:goldenrod">Anyone can become a programmer! It’s all down to the right approach to learning. And we’ve found it.--%> <br />
+
+
+
+
+     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSourceAdmin" ForeColor="#333333" GridLines="None">
+          <AlternatingRowStyle BackColor="White" />
+          <Columns>
+              <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+              <asp:BoundField DataField="ID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
+              <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+              <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+              <asp:BoundField DataField="password" HeaderText="password" SortExpression="password" />
+          </Columns>
+          <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+          <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+          <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+          <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+          <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+          <SortedAscendingCellStyle BackColor="#FDF5AC" />
+          <SortedAscendingHeaderStyle BackColor="#4D0000" />
+          <SortedDescendingCellStyle BackColor="#FCF6C0" />
+          <SortedDescendingHeaderStyle BackColor="#820000" />
+      </asp:GridView>
+      <asp:SqlDataSource ID="SqlDataSourceAdmin" runat="server" ConnectionString="<%$ ConnectionStrings:my_projectConnectionString %>" DeleteCommand="DELETE FROM [jdata] WHERE [ID] = @ID" InsertCommand="INSERT INTO [jdata] ([email], [name], [password]) VALUES (@email, @name, @password)" SelectCommand="SELECT * FROM [jdata]" UpdateCommand="UPDATE [jdata] SET [email] = @email, [name] = @name, [password] = @password WHERE [ID] = @ID">
+          <DeleteParameters>
+              <asp:Parameter Name="ID" Type="Int32" />
+          </DeleteParameters>
+          <InsertParameters>
+              <asp:Parameter Name="email" Type="String" />
+              <asp:Parameter Name="name" Type="String" />
+              <asp:Parameter Name="password" Type="String" />
+          </InsertParameters>
+          <UpdateParameters>
+              <asp:Parameter Name="email" Type="String" />
+              <asp:Parameter Name="name" Type="String" />
+              <asp:Parameter Name="password" Type="String" />
+              <asp:Parameter Name="ID" Type="Int32" />
+          </UpdateParameters>
+      </asp:SqlDataSource>
+        
+      <br />
+        
+
+         <h4 style="text-align:left; background-color:blue">Premium Users</h4>
+        <br />
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="SqlDataSourcePremium" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                <asp:BoundField DataField="namecard" HeaderText="namecard" SortExpression="namecard" />
+                <asp:BoundField DataField="cardnumber" HeaderText="cardnumber" SortExpression="cardnumber" />
+                <asp:BoundField DataField="month" HeaderText="month" SortExpression="month" />
+                <asp:BoundField DataField="cvv" HeaderText="cvv" SortExpression="cvv" />
+                <asp:BoundField DataField="year" HeaderText="year" SortExpression="year" />
+                <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+            </Columns>
+            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+            <SortedAscendingCellStyle BackColor="#FDF5AC" />
+            <SortedAscendingHeaderStyle BackColor="#4D0000" />
+            <SortedDescendingCellStyle BackColor="#FCF6C0" />
+            <SortedDescendingHeaderStyle BackColor="#820000" />
+        </asp:GridView>
+        
+        <asp:SqlDataSource ID="SqlDataSourcePremium" runat="server" ConnectionString="<%$ ConnectionStrings:my_projectConnectionString %>" DeleteCommand="DELETE FROM [premium] WHERE [id] = @id" InsertCommand="INSERT INTO [premium] ([namecard], [cardnumber], [month], [cvv], [year], [email]) VALUES (@namecard, @cardnumber, @month, @cvv, @year, @email)" SelectCommand="SELECT * FROM [premium]" UpdateCommand="UPDATE [premium] SET [namecard] = @namecard, [cardnumber] = @cardnumber, [month] = @month, [cvv] = @cvv, [year] = @year, [email] = @email WHERE [id] = @id">
+            <DeleteParameters>
+                <asp:Parameter Name="id" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="namecard" Type="String" />
+                <asp:Parameter Name="cardnumber" Type="String" />
+                <asp:Parameter Name="month" Type="String" />
+                <asp:Parameter Name="cvv" Type="String" />
+                <asp:Parameter Name="year" Type="String" />
+                <asp:Parameter Name="email" Type="String" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="namecard" Type="String" />
+                <asp:Parameter Name="cardnumber" Type="String" />
+                <asp:Parameter Name="month" Type="String" />
+                <asp:Parameter Name="cvv" Type="String" />
+                <asp:Parameter Name="year" Type="String" />
+                <asp:Parameter Name="email" Type="String" />
+                <asp:Parameter Name="id" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <br />
+
+
+
+
+
+
+
+
+
+
+
+     </div>
+   
+       
+        
+    
+    <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>        
+            
+        <br />
+
+      
+        
+        
+        <!--  <img src="images/programming-code-simple-background-coding-wallpaper-preview.jpg" />-->
+        
+      
+          
+           <footer>
+            <div class="bottom">
+        <p>Copyright 2021</p>
+                </div>
+
+    </footer>
+    
+
+        </div>
+   <%--  </form>--%>
+     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+       
+    
+          
+    
+    </form>
+
+       
+    
+          
+    
+</body>
+</html>

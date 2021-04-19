@@ -1,0 +1,709 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CA4F8740-40D5-47DE-ABFB-1BFDB32913F3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project</RootNamespace>
+    <AssemblyName>Project</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutStart.aspx" />
+    <Content Include="Admin.aspx" />
+    <Content Include="Check.aspx" />
+    <Content Include="Checking.aspx" />
+    <Content Include="Contacts.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="images\admin.jpg" />
+    <Content Include="images\Background.jpg" />
+    <Content Include="images\form.jpg" />
+    <Content Include="images\form2.jpg" />
+    <Content Include="images\left-side.jpg" />
+    <Content Include="images\left-side2.jpg" />
+    <Content Include="images\programming-code-simple-background-coding-wallpaper-preview.jpg" />
+    <Content Include="images\reg.png" />
+    <Content Include="images\right-side.jpg" />
+    <Content Include="images\right-side2.jpg" />
+    <Content Include="images\Untitled-1.jpg" />
+    <Content Include="JavaScript Arithmetic.aspx" />
+    <Content Include="JavaScript Assignment.aspx" />
+    <Content Include="JavaScript Comments.aspx" />
+    <Content Include="JavaScript Data Types.aspx" />
+    <Content Include="JavaScript Operators.aspx" />
+    <Content Include="JavaScript Output.aspx" />
+    <Content Include="JavaScript Statements.aspx" />
+    <Content Include="JavaScript Syntax.aspx" />
+    <Content Include="JavaScript Variables.aspx" />
+    <Content Include="JavaScript Where To.aspx" />
+    <Content Include="JavaScriptIntoduction.aspx" />
+    <Content Include="jQuery Add Elements.aspx" />
+    <Content Include="jQuery css%28%29 Method.aspx" />
+    <Content Include="jQuery Dimensions.aspx" />
+    <Content Include="jQuery Event Methods.aspx" />
+    <Content Include="jQuery Get and Set CSS Classes.aspx" />
+    <Content Include="jQuery Get Content and Attributes.aspx" />
+    <Content Include="jQuery Get Started.aspx" />
+    <Content Include="jQuery Introduction.aspx" />
+    <Content Include="jQuery Remove Elements.aspx" />
+    <Content Include="jQuery Selectors.aspx" />
+    <Content Include="jQuery Set Content and Attributes.aspx" />
+    <Content Include="jQuery Syntax.aspx" />
+    <Content Include="LogingForm.aspx" />
+    <Content Include="PHP Comments.aspx" />
+    <Content Include="PHP Constants.aspx" />
+    <Content Include="PHP Data Types.aspx" />
+    <Content Include="PHP echo and print Statements.aspx" />
+    <Content Include="PHP Installation.aspx" />
+    <Content Include="PHP Introduction.aspx" />
+    <Content Include="PHP Math.aspx" />
+    <Content Include="PHP Numbers.aspx" />
+    <Content Include="PHP Strings.aspx" />
+    <Content Include="PHP Syntax.aspx" />
+    <Content Include="PHP Variables Scope.aspx" />
+    <Content Include="PHP Variables.aspx" />
+    <Content Include="PurchuseStyle.css" />
+    <Content Include="Registration.aspx" />
+    <Content Include="SQL AND, OR and NOT Operators.aspx" />
+    <Content Include="SQL DELETE Statement.aspx" />
+    <Content Include="SQL INSERT INTO Statement.aspx" />
+    <Content Include="SQL Introduction.aspx" />
+    <Content Include="SQL LIKE Operator.aspx" />
+    <Content Include="SQL NULL Values.aspx" />
+    <Content Include="SQL ORDER BY Keyword.aspx" />
+    <Content Include="SQL SELECT DISTINCT Statement.aspx" />
+    <Content Include="SQL SELECT Statement.aspx" />
+    <Content Include="SQL Syntax.aspx" />
+    <Content Include="SQL UPDATE Statement.aspx" />
+    <Content Include="SQL WHERE Clause.aspx" />
+    <Content Include="StyleSheet1.css" />
+    <Content Include="UserHome.aspx" />
+    <Content Include="UsersAdmin.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutStart.aspx.cs">
+      <DependentUpon>AboutStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutStart.aspx.designer.cs">
+      <DependentUpon>AboutStart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsersAdmin.aspx.cs">
+      <DependentUpon>UsersAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsersAdmin.aspx.designer.cs">
+      <DependentUpon>UsersAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsersAdmin.Master.cs">
+      <DependentUpon>UsersAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsersAdmin.Master.designer.cs">
+      <DependentUpon>UsersAdmin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Check.aspx.cs">
+      <DependentUpon>Check.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Check.aspx.designer.cs">
+      <DependentUpon>Check.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checking.aspx.cs">
+      <DependentUpon>Checking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checking.aspx.designer.cs">
+      <DependentUpon>Checking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contacts.Master.cs">
+      <DependentUpon>Contacts.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contacts.Master.designer.cs">
+      <DependentUpon>Contacts.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Arithmetic.aspx.cs">
+      <DependentUpon>JavaScript Arithmetic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Arithmetic.aspx.designer.cs">
+      <DependentUpon>JavaScript Arithmetic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Assignment.aspx.cs">
+      <DependentUpon>JavaScript Assignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Assignment.aspx.designer.cs">
+      <DependentUpon>JavaScript Assignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Comments.aspx.cs">
+      <DependentUpon>JavaScript Comments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Comments.aspx.designer.cs">
+      <DependentUpon>JavaScript Comments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Data Types.aspx.cs">
+      <DependentUpon>JavaScript Data Types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Data Types.aspx.designer.cs">
+      <DependentUpon>JavaScript Data Types.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Operators.aspx.cs">
+      <DependentUpon>JavaScript Operators.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Operators.aspx.designer.cs">
+      <DependentUpon>JavaScript Operators.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Output.aspx.cs">
+      <DependentUpon>JavaScript Output.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Output.aspx.designer.cs">
+      <DependentUpon>JavaScript Output.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Statements.aspx.cs">
+      <DependentUpon>JavaScript Statements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Statements.aspx.designer.cs">
+      <DependentUpon>JavaScript Statements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Syntax.aspx.cs">
+      <DependentUpon>JavaScript Syntax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Syntax.aspx.designer.cs">
+      <DependentUpon>JavaScript Syntax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Variables.aspx.cs">
+      <DependentUpon>JavaScript Variables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Variables.aspx.designer.cs">
+      <DependentUpon>JavaScript Variables.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript Where To.aspx.cs">
+      <DependentUpon>JavaScript Where To.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript Where To.aspx.designer.cs">
+      <DependentUpon>JavaScript Where To.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScript.Master.cs">
+      <DependentUpon>JavaScript.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScript.Master.designer.cs">
+      <DependentUpon>JavaScript.Master</DependentUpon>
+    </Compile>
+    <Compile Include="JavaScriptIntoduction.aspx.cs">
+      <DependentUpon>JavaScriptIntoduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JavaScriptIntoduction.aspx.designer.cs">
+      <DependentUpon>JavaScriptIntoduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Add Elements.aspx.cs">
+      <DependentUpon>jQuery Add Elements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Add Elements.aspx.designer.cs">
+      <DependentUpon>jQuery Add Elements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery css%28%29 Method.aspx.cs">
+      <DependentUpon>jQuery css%28%29 Method.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery css%28%29 Method.aspx.designer.cs">
+      <DependentUpon>jQuery css%28%29 Method.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Dimensions.aspx.cs">
+      <DependentUpon>jQuery Dimensions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Dimensions.aspx.designer.cs">
+      <DependentUpon>jQuery Dimensions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Event Methods.aspx.cs">
+      <DependentUpon>jQuery Event Methods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Event Methods.aspx.designer.cs">
+      <DependentUpon>jQuery Event Methods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Get and Set CSS Classes.aspx.cs">
+      <DependentUpon>jQuery Get and Set CSS Classes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Get and Set CSS Classes.aspx.designer.cs">
+      <DependentUpon>jQuery Get and Set CSS Classes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Get Content and Attributes.aspx.cs">
+      <DependentUpon>jQuery Get Content and Attributes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Get Content and Attributes.aspx.designer.cs">
+      <DependentUpon>jQuery Get Content and Attributes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Get Started.aspx.cs">
+      <DependentUpon>jQuery Get Started.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Get Started.aspx.designer.cs">
+      <DependentUpon>jQuery Get Started.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Introduction.aspx.cs">
+      <DependentUpon>jQuery Introduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Introduction.aspx.designer.cs">
+      <DependentUpon>jQuery Introduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Remove Elements.aspx.cs">
+      <DependentUpon>jQuery Remove Elements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Remove Elements.aspx.designer.cs">
+      <DependentUpon>jQuery Remove Elements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Selectors.aspx.cs">
+      <DependentUpon>jQuery Selectors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Selectors.aspx.designer.cs">
+      <DependentUpon>jQuery Selectors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Set Content and Attributes.aspx.cs">
+      <DependentUpon>jQuery Set Content and Attributes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Set Content and Attributes.aspx.designer.cs">
+      <DependentUpon>jQuery Set Content and Attributes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery Syntax.aspx.cs">
+      <DependentUpon>jQuery Syntax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery Syntax.aspx.designer.cs">
+      <DependentUpon>jQuery Syntax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jQuery.Master.cs">
+      <DependentUpon>jQuery.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jQuery.Master.designer.cs">
+      <DependentUpon>jQuery.Master</DependentUpon>
+    </Compile>
+    <Compile Include="LogingForm.aspx.cs">
+      <DependentUpon>LogingForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogingForm.aspx.designer.cs">
+      <DependentUpon>LogingForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Comments.aspx.cs">
+      <DependentUpon>PHP Comments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Comments.aspx.designer.cs">
+      <DependentUpon>PHP Comments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Constants.aspx.cs">
+      <DependentUpon>PHP Constants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Constants.aspx.designer.cs">
+      <DependentUpon>PHP Constants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Data Types.aspx.cs">
+      <DependentUpon>PHP Data Types.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Data Types.aspx.designer.cs">
+      <DependentUpon>PHP Data Types.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP echo and print Statements.aspx.cs">
+      <DependentUpon>PHP echo and print Statements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP echo and print Statements.aspx.designer.cs">
+      <DependentUpon>PHP echo and print Statements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Installation.aspx.cs">
+      <DependentUpon>PHP Installation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Installation.aspx.designer.cs">
+      <DependentUpon>PHP Installation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Introduction.aspx.cs">
+      <DependentUpon>PHP Introduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Introduction.aspx.designer.cs">
+      <DependentUpon>PHP Introduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Math.aspx.cs">
+      <DependentUpon>PHP Math.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Math.aspx.designer.cs">
+      <DependentUpon>PHP Math.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Numbers.aspx.cs">
+      <DependentUpon>PHP Numbers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Numbers.aspx.designer.cs">
+      <DependentUpon>PHP Numbers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Strings.aspx.cs">
+      <DependentUpon>PHP Strings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Strings.aspx.designer.cs">
+      <DependentUpon>PHP Strings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Syntax.aspx.cs">
+      <DependentUpon>PHP Syntax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Syntax.aspx.designer.cs">
+      <DependentUpon>PHP Syntax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Variables Scope.aspx.cs">
+      <DependentUpon>PHP Variables Scope.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Variables Scope.aspx.designer.cs">
+      <DependentUpon>PHP Variables Scope.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP Variables.aspx.cs">
+      <DependentUpon>PHP Variables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP Variables.aspx.designer.cs">
+      <DependentUpon>PHP Variables.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PHP.Master.cs">
+      <DependentUpon>PHP.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PHP.Master.designer.cs">
+      <DependentUpon>PHP.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site2.Master.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site2.Master.designer.cs">
+      <DependentUpon>Site2.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site3.Master.cs">
+      <DependentUpon>Site3.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site3.Master.designer.cs">
+      <DependentUpon>Site3.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SQL AND, OR and NOT Operators.aspx.cs">
+      <DependentUpon>SQL AND, OR and NOT Operators.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL AND, OR and NOT Operators.aspx.designer.cs">
+      <DependentUpon>SQL AND, OR and NOT Operators.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL DELETE Statement.aspx.cs">
+      <DependentUpon>SQL DELETE Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL DELETE Statement.aspx.designer.cs">
+      <DependentUpon>SQL DELETE Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL INSERT INTO Statement.aspx.cs">
+      <DependentUpon>SQL INSERT INTO Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL INSERT INTO Statement.aspx.designer.cs">
+      <DependentUpon>SQL INSERT INTO Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL Introduction.aspx.cs">
+      <DependentUpon>SQL Introduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL Introduction.aspx.designer.cs">
+      <DependentUpon>SQL Introduction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL LIKE Operator.aspx.cs">
+      <DependentUpon>SQL LIKE Operator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL LIKE Operator.aspx.designer.cs">
+      <DependentUpon>SQL LIKE Operator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL NULL Values.aspx.cs">
+      <DependentUpon>SQL NULL Values.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL NULL Values.aspx.designer.cs">
+      <DependentUpon>SQL NULL Values.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL ORDER BY Keyword.aspx.cs">
+      <DependentUpon>SQL ORDER BY Keyword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL ORDER BY Keyword.aspx.designer.cs">
+      <DependentUpon>SQL ORDER BY Keyword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL SELECT DISTINCT Statement.aspx.cs">
+      <DependentUpon>SQL SELECT DISTINCT Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL SELECT DISTINCT Statement.aspx.designer.cs">
+      <DependentUpon>SQL SELECT DISTINCT Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL SELECT Statement.aspx.cs">
+      <DependentUpon>SQL SELECT Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL SELECT Statement.aspx.designer.cs">
+      <DependentUpon>SQL SELECT Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL Syntax.aspx.cs">
+      <DependentUpon>SQL Syntax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL Syntax.aspx.designer.cs">
+      <DependentUpon>SQL Syntax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL UPDATE Statement.aspx.cs">
+      <DependentUpon>SQL UPDATE Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL UPDATE Statement.aspx.designer.cs">
+      <DependentUpon>SQL UPDATE Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL WHERE Clause.aspx.cs">
+      <DependentUpon>SQL WHERE Clause.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL WHERE Clause.aspx.designer.cs">
+      <DependentUpon>SQL WHERE Clause.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SQL.Master.cs">
+      <DependentUpon>SQL.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SQL.Master.designer.cs">
+      <DependentUpon>SQL.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserHome.aspx.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserHome.aspx.designer.cs">
+      <DependentUpon>UserHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JavaScript.Master" />
+    <Content Include="jQuery.Master" />
+    <Content Include="Contacts.Master" />
+    <Content Include="UsersAdmin.Master" />
+    <None Include="packages.config" />
+    <Content Include="Site1.Master" />
+    <Content Include="Site2.Master" />
+    <Content Include="Site3.Master" />
+    <Content Include="PHP.Master" />
+    <Content Include="SQL.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\NewFolder1\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62444</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62444/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,292 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Contacts.master.cs" Inherits="Project.Contacts" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Contacts</title>
+      <link href="~/StyleSheet1.css" rel="stylesheet" media="screen" runat="server"/> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+   
+
+
+    <style type="text/css">
+       
+
+        #day {
+            color: white;
+            font-family: Consolas;
+            font-size: 12px;
+            text-align: left;
+            margin-left: 100px;
+        }
+        </style>
+    
+</head>
+<body>
+     <form id="form1" runat="server">
+    <div class="header">
+         <div class="header2">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+             <div class="login"> <img src="images/Untitled-1.jpg" />
+            </div>
+             <div class="login">
+        <div class="auto-style3">
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">
+                        &nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                       
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10"><p style="font-size:15px;">You are welcome!</p> <p style="font-size:20px;" id="passname"><b></b></p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        <p id="status"  style="font-size:15px; display:none" >Status: Premium</p></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style15"></td>
+                    <td class="auto-style16"></td>
+                    <td class="auto-style17"></td>
+                    <td class="auto-style18">
+                       
+                        <%-- <asp:Button ID="LogOut" runat="server" CssClass="button-login1" OnClick="LogOut_Click" Text="Sign Out" />--%>
+                                   <div class="log-reg">
+                <%-- New Logging Form--%>
+                 
+                    
+                     <%--<i class="fa fa-envelope"></i>                   
+                         <i class="fa fa-key icon"></i>--%>
+                  <%--  <button type="button" onclick="log()"  class="button-login2" id="loging_button1">Sign Up</button><span></span><span></span><span></span><span></span>--%>
+               <span></span><span></span><span></span>   <a id="log_out" onclick="log_out" style="color:white">Log Out</a>
+                          <span></span><span></span><span></span><span></span>
+                       
+                    
+
+                
+                </div>
+                        
+                        
+                       <%-- <button type="button" id="log_out" class="button-login1" onclick="log_out">Log out</button>--%>
+                            </td>
+                    <td class="auto-style19"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">&nbsp;</td>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style10">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            </div>
+        
+              </div>
+             </div>
+
+    
+
+        <div style="height:20px;">
+         <p id="day"></p>
+        <p id="time"></p>
+        </div>
+
+
+        <script>
+            $(document).ready(function () {
+                if (sessionStorage.getItem('pass_access') == null)
+        
+                 var hiddenBox = sessionStorage.getItem('pass_access');
+                 if (hiddenBox == "true") {
+                     $("#hide-courses").show();
+                
+                     $("#status").show();
+
+                    
+                     
+                }
+                var admin = sessionStorage.getItem('pass_admin');
+                if (admin == "true") {
+                    $('#hide-user').show();
+                }
+
+                $('#femail').val(sessionStorage.getItem('email_pass'));
+
+            });
+
+
+
+
+            document.getElementById("passname").innerHTML = sessionStorage.getItem("pass_name");
+             document.getElementById("log_out").addEventListener('click', log_out);
+
+             function log_out() {
+                 document.getElementById("passname").innerHTML = '';
+                 sessionStorage.setItem("pass_access", "false");
+                window.location.href = "http://localhost:62444/Home.aspx";
+            }
+
+             var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+
+             var myVar=setInterval(function(){myTimer()},1000);
+     function myTimer()
+     {
+        var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("day").innerHTML=d;
+      }
+    function myStopFunction()
+     {
+    clearInterval(myVar);
+      }
+           // document.getElementById("time").innerHTML =  hours + " : " + minutes + " : " + seconds;
+        </script>
+        <br />
+       
+        <div id="navbar">
+              <ul>
+ <li> <a class="active" onclick="transfer()" href="UserHome.aspx">Home</a></li>
+   <%--<li><a href="javascript:void(0)">News</a> </li>--%>
+  <li> <a href="Contacts.aspx">Contact</a> </li>
+            <li class="dropdown">
+                <%--Hide Courses--%>
+                 <div id="hide-courses" style="display:none";>
+<a href="javascript:void(0)" class="dropbtn">Courses</a>
+    <div class="dropdown-content">
+       
+      <a href="JavaScriptIntoduction.aspx">JavaScript</a>
+      <a href="jQuery Introduction.aspx">jQuery</a>
+      <a href="PHP Introduction.aspx">Php</a>
+      <a href="SQL Introduction.aspx">SQL</a>
+    </div>
+           </div>
+        </li>
+ </ul>
+</div>
+        
+         
+<script>
+
+    sessionStorage.setItem('pass_access', sessionStorage.getItem('pass_access'));
+    
+</script>
+
+
+      
+        <br />
+         <%-- <div id="wrapper2">
+    <div id="c1">con1</div>
+    <div id="c2">con2</div>
+</div>--%>
+
+
+        <div id="wrapper2">
+            <%--Content--%>
+     <div id="c88">
+
+
+
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+             <p>
+                </p>
+         </asp:ContentPlaceHolder>
+         <hr>
+         <br />
+
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">sdsdsd
+         </asp:ContentPlaceHolder>
+
+
+     </div>
+            <%-- Second menu--%>
+         
+        <div id="c2">
+            <div class="vertical-menu">
+ <%-- <a class="active" href="#home">JavaScript</a>
+ <a href="JavaScriptIntoduction.aspx">Introduction</a>
+  <a href="JavaScript Where To.aspx">Where To</a>
+  <a href="JavaScript Output.aspx">Output</a>
+  <a href="JavaScript Statements.aspx">Statements</a>
+  <a href="JavaScript Syntax.aspx">Syntax</a>
+  <a href="JavaScript Comments.aspx">Comments</a>
+  <a href="JavaScript Variables.aspx">Variables</a>
+  <a href="JavaScript Operators.aspx">Operators</a>
+  <a href="JavaScript Arithmetic.aspx">Arithmetic</a>
+ <a href="JavaScript Assignment.aspx">Assignment</a>
+  <a href="JavaScript Data Types.aspx">Data Types</a>--%>
+
+                
+</div>
+           </div>     
+      </div> 
+        <br />
+         
+        <br />
+        <br />
+    
+    <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>        
+            
+        <br />
+
+      
+        
+        
+        <!--  <img src="images/programming-code-simple-background-coding-wallpaper-preview.jpg" />-->
+        
+   
+
+        </div>
+    
+    
+        
+
+       
+
+       
+
+
+
+    </form>
+</body>
+</html>
